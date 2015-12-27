@@ -14,18 +14,12 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
-#include <math.h>
+#include "math.h"
 #include <vector> //problems: 2
-
 using namespace std;
 
+typedef long double (*Problem)();
 const int EXERCISES_TOTAL = 539;
-const int EXERCISES[] = {};
-//create array consisting of function types
-
-/*
- * 
- */
 
 long double problem1();
 long double problem2();
@@ -33,14 +27,23 @@ long double problem3();
 long double problem4();
 long double problem5();
 
+Problem exercises[EXERCISES_TOTAL + 1] = {problem1, problem2, problem3, problem4,
+    problem5};
+
+/*
+ *
+ */
+
 int main(int argc, char** argv) {
-    int behavior;
+    int problemNumber = 0, behavior;
     long double answer;
     ifstream exercisesTextFileIn;
     ofstream exercisesTextFileOut;
     exercisesTextFileIn.open("exercises.txt"); //don't forget to close
     
-    answer = problem5();
+    cout << "What exercise would you like to see?" << endl;
+    cin >> problemNumber;
+    answer = exercises[problemNumber - 1]();
     cout << fixed << answer << endl; //or skip answer altogether and print 'problemX()'
     
     return 0;
