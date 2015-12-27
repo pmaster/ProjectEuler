@@ -14,8 +14,8 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
-#include <vector> //problems: 2
 #include <math.h>
+#include <vector> //problems: 2
 
 using namespace std;
 
@@ -30,6 +30,7 @@ const int EXERCISES[] = {};
 long double problem1();
 long double problem2();
 long double problem3();
+long double problem4();
 
 int main(int argc, char** argv) {
     int behavior;
@@ -38,7 +39,7 @@ int main(int argc, char** argv) {
     ofstream exercisesTextFileOut;
     exercisesTextFileIn.open("exercises.txt"); //don't forget to close
     
-    answer = problem3();
+    answer = problem4();
     cout << answer << endl; //or skip answer altogether and print 'problemX()'
     
     return 0;
@@ -53,9 +54,6 @@ int main(int argc, char** argv) {
  * get 3, 5, 6 and 9. The sum of these multiples is 23. Find the sum of all the
  * multiples of 3 or 5 below 1000. */
 long double problem1(){
-    cout << "Problem 1\nMultiples of 3 and 5\n\n"
-            "If we list all the natural numbers below 10 that are multiples\n"
-            "of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.\n";
     double totalSum = 0;
     for (int i = 3; i < 1000; i++)
         if (i % 3 == 0 || i % 5 == 0)
@@ -81,7 +79,7 @@ long double problem2(){ //longs versus ints? ints appear to work fine. vector si
 bool problem3_primeNumTester(long long numToBeTested);
 
 long double problem3(){
-    long long largestPrimeFactor, promptNumber = 6008514751431;
+    long long largestPrimeFactor, promptNumber = 600851475143;
     
     for (long long i = 2; i < ceil(sqrt(promptNumber)); i++)
         if (promptNumber % i == 0)
@@ -97,3 +95,14 @@ bool problem3_primeNumTester(long long numToBeTested){
     return true;
 }
 
+long double problem4(){ //given that 234432 = 444*528
+    long double largestPalindrome = 234432;
+    for (int i = 444; i < 1000; i++)
+        for (int j = 528; j < 1000; j++)
+            if (i*j>largestPalindrome)
+                if (((i*j/1000)%100)%10 == (((i*j/100)%1000)%100)%10)
+                    if ((i*j/10000)%10 == ((((i*j/10)%10000)%1000)%100)%10)
+                        if (i*j/100000 == (((((i*j)%100000)%10000)%1000)%100)%10)
+                            largestPalindrome = i*j;
+    return largestPalindrome;
+}
