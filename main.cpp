@@ -31,6 +31,7 @@ long double problem1();
 long double problem2();
 long double problem3();
 long double problem4();
+long double problem5();
 
 int main(int argc, char** argv) {
     int behavior;
@@ -39,8 +40,8 @@ int main(int argc, char** argv) {
     ofstream exercisesTextFileOut;
     exercisesTextFileIn.open("exercises.txt"); //don't forget to close
     
-    answer = problem4();
-    cout << answer << endl; //or skip answer altogether and print 'problemX()'
+    answer = problem5();
+    cout << fixed << answer << endl; //or skip answer altogether and print 'problemX()'
     
     return 0;
 }
@@ -97,12 +98,25 @@ bool problem3_primeNumTester(long long numToBeTested){
 
 long double problem4(){ //given that 234432 = 444*528
     long double largestPalindrome = 234432;
-    for (int i = 444; i < 1000; i++)
-        for (int j = 528; j < 1000; j++)
+    for (int i = 999; i > 444; i--)
+        for (int j = 999; j > 528; j--)
             if (i*j>largestPalindrome)
                 if (((i*j/1000)%100)%10 == (((i*j/100)%1000)%100)%10)
                     if ((i*j/10000)%10 == ((((i*j/10)%10000)%1000)%100)%10)
                         if (i*j/100000 == (((((i*j)%100000)%10000)%1000)%100)%10)
                             largestPalindrome = i*j;
     return largestPalindrome;
+}
+
+long double problem5(){//given that 2520 is the smallest # divisible by 1 thru 10
+    long double smallestDivisible = 2519;
+    bool divisibleByAll;
+    do{
+        smallestDivisible++;
+        divisibleByAll = true;
+        for (int i = 20; i >= 11 && divisibleByAll; i--)
+            if (int(smallestDivisible) % i != 0)
+                divisibleByAll = false;
+    } while (!divisibleByAll);    
+    return smallestDivisible;
 }
