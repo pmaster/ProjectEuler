@@ -27,9 +27,10 @@ long double problem3();
 long double problem4();
 long double problem5();
 long double problem6();
+long double problem7();
 
 Problem exercises[EXERCISES_TOTAL + 1] = {problem1, problem2, problem3, problem4,
-    problem5, problem6};
+    problem5, problem6, problem7};
 
 /*
  *
@@ -135,4 +136,32 @@ long double problem6(){
     squareOfSum = squareOfSum*squareOfSum;
     difference = squareOfSum - sumOfSquares;
     return difference;
+}
+
+//max value of n for successful program operation? shift from the primes
+//array and use 
+long double problem7(){
+    long n = 10001,//variable -- we want the 10001st prime
+            nthPrime, lastNonZeroIndex = 0, numBeingTested = 3; 
+    long primes[n];
+    bool divisibleByNone;
+    primes[0] = 2;
+    while (lastNonZeroIndex < 10001){
+        divisibleByNone = true;
+        //for (long i = 2;
+                //i <= sqrt(numBeingTested) && divisibleByNone; i++)
+        for (int i = 0;
+                i <= lastNonZeroIndex && divisibleByNone; i++)
+            //if (numBeingTested % i == 0)
+            if (numBeingTested % primes[i] == 0)
+                divisibleByNone = false;
+        if (divisibleByNone)
+            primes[++lastNonZeroIndex] = numBeingTested;
+        numBeingTested++;}
+    nthPrime = primes[n-1];
+    /*for (int i = 0; i < n; i++)
+     *   if (primes[i] != 0)
+     *      cout << primes[i] << " at index " << i << endl;
+     */
+    return nthPrime;
 }
