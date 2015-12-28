@@ -26,9 +26,10 @@ long double problem2();
 long double problem3();
 long double problem4();
 long double problem5();
+long double problem6();
 
 Problem exercises[EXERCISES_TOTAL + 1] = {problem1, problem2, problem3, problem4,
-    problem5};
+    problem5, problem6};
 
 /*
  *
@@ -117,9 +118,21 @@ long double problem5(){//given that 2520 is the smallest # divisible by 1 thru 1
     do{
         smallestDivisible++;
         divisibleByAll = true;
-        for (int i = 20; i >= 11 && divisibleByAll; i--)
-            if (int(smallestDivisible) % i != 0)
+        for (long i = 20/*user inputted number*/; i >= 1 && divisibleByAll; i--)
+            if (long(smallestDivisible) % i != 0)
                 divisibleByAll = false;
     } while (!divisibleByAll);    
     return smallestDivisible;
+}
+
+long double problem6(){
+    long largestNum = 100; //variable
+    long double difference, sumOfSquares = 0, squareOfSum = 0;
+    for (long i = 0; i <= largestNum; i++){
+        sumOfSquares += i*i;
+        squareOfSum += i;
+    }
+    squareOfSum = squareOfSum*squareOfSum;
+    difference = squareOfSum - sumOfSquares;
+    return difference;
 }
