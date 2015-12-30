@@ -26,9 +26,14 @@ long double problem5();
 long double problem6();
 long double problem7();
 long double problem8();
+long double problem9();
 
 Problem exercises[EXERCISES_TOTAL + 1] = {problem1, problem2, problem3, problem4,
-    problem5, problem6, problem7, problem8};
+    problem5, problem6, problem7, problem8, problem9};
+
+//takes a positive integer as an argument and returns true
+//if the integer is a perfect square and false if not
+bool isPerfectSquare(int n);
 
 /*
  *
@@ -39,7 +44,7 @@ int main(int argc, char** argv) {
     long double answer;
     ifstream exercisesTextFileIn;
     ofstream exercisesTextFileOut;
-    exercisesTextFileIn.open("exercises.txt"); //don't forget to close
+    //exercisesTextFileIn.open("exercises.txt"); //don't forget to close
 
     cout << "What exercise would you like to see?" << endl;
     cin >> problemNumber;
@@ -50,6 +55,12 @@ int main(int argc, char** argv) {
 }
 
 //create way to randomly select a random problem
+
+bool isPerfectSquare(int n){
+    if (int(sqrt(n)) == sqrt(n))
+        return true;
+    return false;
+}
 
 
 /* Problem 1, Multiples of 3 and 5
@@ -177,4 +188,13 @@ long double problem8(){
         if (currentProduct > greatestProduct)
             greatestProduct = currentProduct;}
     return greatestProduct;
+}
+
+long double problem9(){ //a + b + sqrt(a*a+b*b) = 1000 is the same as b = (1000 * (a - 500)) / (a - 1000) for a < 1000
+    long double b, sumABC, desiredSumABC = 1000 /*changeable*/;
+    for (int a = 1; a < .5*desiredSumABC; a++){
+        b = (1000 * (a - 500)) / (a - 1000);
+        if (isPerfectSquare(a*a+b*b))
+            return a*b*(sqrt(a*a+b*b));}
+    return 0;
 }
