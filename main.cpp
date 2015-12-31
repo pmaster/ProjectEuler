@@ -27,13 +27,17 @@ long double problem6();
 long double problem7();
 long double problem8();
 long double problem9();
+long double problem10();
 
 Problem exercises[EXERCISES_TOTAL + 1] = {problem1, problem2, problem3, problem4,
-    problem5, problem6, problem7, problem8, problem9};
+    problem5, problem6, problem7, problem8, problem9, problem10};
 
 //takes a positive integer as an argument and returns true
 //if the integer is a perfect square and false if not
 bool isPerfectSquare(int n);
+//takes an integer that is 2 or greater and returns true
+//if the integer is a prime number and false if not
+bool isPrime(int n);
 
 /*
  *
@@ -60,6 +64,13 @@ bool isPerfectSquare(int n){
     if (int(sqrt(n)) == sqrt(n))
         return true;
     return false;
+}
+
+bool isPrime(int n){
+    for (int i = 2; i <= sqrt(n); i++)
+        if (n % i == 0)
+            return false;
+    return true;
 }
 
 
@@ -197,4 +208,12 @@ long double problem9(){ //a + b + sqrt(a*a+b*b) = 1000 is the same as b = (1000 
         if (isPerfectSquare(a*a+b*b))
             return a*b*(sqrt(a*a+b*b));}
     return 0;
+}
+
+long double problem10(){
+    long double sumPrimes = 0, maxValuePlusOne = 2000000; //change this
+    for (int i = 2; i < maxValuePlusOne; i++)
+        if (isPrime(i))
+            sumPrimes += i;
+    return sumPrimes;
 }
