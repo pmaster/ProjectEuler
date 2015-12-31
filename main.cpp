@@ -18,6 +18,7 @@ using namespace std;
 typedef long double (*Problem)();
 const int EXERCISES_TOTAL = 539;
 
+//use header file for all problem functions, typedef, const declarations, and exercises array
 long double problem1();
 long double problem2();
 long double problem3();
@@ -28,16 +29,18 @@ long double problem7();
 long double problem8();
 long double problem9();
 long double problem10();
+long double problem11();
 
+//update array of problems and fill
 Problem exercises[EXERCISES_TOTAL + 1] = {problem1, problem2, problem3, problem4,
-    problem5, problem6, problem7, problem8, problem9, problem10};
+    problem5, problem6, problem7, problem8, problem9, problem10, problem11};
 
+bool isPerfectSquare(int n);
 //takes a positive integer as an argument and returns true
 //if the integer is a perfect square and false if not
-bool isPerfectSquare(int n);
-//takes an integer that is 2 or greater and returns true
-//if the integer is a prime number and false if not
 bool isPrime(int n);
+//takes an integer that is greater than 1 and returns true
+//if the integer is a prime number and false if not
 
 /*
  *
@@ -73,6 +76,9 @@ bool isPrime(int n){
     return true;
 }
 
+int notSolved(){
+    return -1;
+}
 
 /* Problem 1, Multiples of 3 and 5
  * If we list all the natural numbers below 10 that are multiples of 3 or 5, we
@@ -216,4 +222,8 @@ long double problem10(){
         if (isPrime(i))
             sumPrimes += i;
     return sumPrimes;
+}
+
+long double problem11(){
+    return notSolved();
 }
