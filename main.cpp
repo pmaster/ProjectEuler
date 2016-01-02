@@ -97,7 +97,7 @@ Problem problems[PROBLEMS_TOTAL] = {problem1, problem2, problem3, problem4,
  *
  */
 
-int main(int argc, char** argv) {
+int main(int argc, char** argv){
     int problemNumber = 0, behavior;
     long double answer;
     ifstream exercisesTextFileIn;

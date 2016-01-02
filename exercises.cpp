@@ -22,9 +22,29 @@ bool isPrime(int n){
     return true;
 }
 
+long getTriangleNumber(int n){
+    long nthTriangleNumber = 0;
+    for (int i = 1; i <= n; i++)
+        nthTriangleNumber += i;
+    return nthTriangleNumber;
+}
+
+int getNumDivisors(long n){
+    int numDivisors = 0;//
+    for (int i = 1; i < sqrt(n); i++)
+        if (n % i == 0)
+                numDivisors += 2;
+    if (isPerfectSquare(n))
+        numDivisors += 1;
+    return numDivisors;
+}
+
 int notSolved(){
     return -1;
 }
+
+
+
 
 /* Problem 1, Multiples of 3 and 5
  * If we list all the natural numbers below 10 that are multiples of 3 or 5, we
@@ -175,7 +195,10 @@ long double problem11(){
 }
 
 long double problem12(){
-    return notSolved();
+    int i = 1, numOfDivisorsToExceed = 500; //nth triangle number -- change this
+    while (getNumDivisors(getTriangleNumber(i)) <= numOfDivisorsToExceed)
+        i++;
+    return getTriangleNumber(i);
 }
 
 long double problem13(){

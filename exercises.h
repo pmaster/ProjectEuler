@@ -8,6 +8,13 @@ bool isPrime(int n);
 //takes an integer that is greater than 1 and returns true
 //if the integer is a prime number and false if not
 
+long getTriangleNumber(int n);
+//takes a positive integer, n, and returns the
+//nth triangle number
+
+int getNumDivisors(long n);
+//takes a positive integer and returns its number of divisors
+
 typedef long double (*Problem)();
 const int PROBLEMS_TOTAL = 600;
 
