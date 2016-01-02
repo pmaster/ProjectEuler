@@ -2,7 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector> //problems: 2
-#include <string> //problem 8
+#include <string> //problem 8, 13
 #include "math.h"
 #include "stdlib.h" //problems: 8
 #include "exercises.h"
@@ -39,17 +39,32 @@ int getNumDivisors(long n){
     return numDivisors;
 }
 
+long long getSumString(string n){
+    long long sum = 0;
+    for (int i = 0; i < n.length(); i++)
+        sum += n[i] - 48;
+    return sum;
+}
+
+long long getNumCollatzTerms(long long n){
+    int numCollatzTerms = 1; //1, rather than 0, to account for starting term
+    while (n != 1){
+        if (n % 2 == 0)
+            n = n/2;
+        else
+            n = n*3 + 1;
+        numCollatzTerms++;}
+    return numCollatzTerms;
+}
+
 int notSolved(){
     return -1;
 }
 
+/*
+ *
+*/
 
-
-
-/* Problem 1, Multiples of 3 and 5
- * If we list all the natural numbers below 10 that are multiples of 3 or 5, we
- * get 3, 5, 6 and 9. The sum of these multiples is 23. Find the sum of all the
- * multiples of 3 or 5 below 1000. */
 long double problem1(){
     double totalSum = 0;
     for (int i = 3; i < 1000; i++)
@@ -205,8 +220,15 @@ long double problem13(){
 	return notSolved();
 }
 
-long double problem14(){
-	return notSolved();
+long double problem14(){//if the highest chain length has multiple corresponding numbers, returns the smaller one
+    int highestChainLength = 0;
+	long highestChainLengthNum, maxNum = 1000000; //largest num to test -- change this
+	//for (int i = 1; i <= maxNum; i++){
+	for (int i = maxNum; i >= 1; i--)
+            if (highestChainLength < getNumCollatzTerms(i)){
+                highestChainLength = getNumCollatzTerms(i);
+                highestChainLengthNum = i;}
+	return highestChainLengthNum;
 }
 
 long double problem15(){

@@ -103,7 +103,6 @@ int main(int argc, char** argv){
     ifstream exercisesTextFileIn;
     ofstream exercisesTextFileOut;
     //exercisesTextFileIn.open("exercises.txt"); //don't forget to close
-
     cout << "What exercise would you like to see?" << endl;
     cin >> problemNumber;
     answer = problems[problemNumber - 1]();

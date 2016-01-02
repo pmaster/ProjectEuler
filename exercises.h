@@ -15,6 +15,15 @@ long getTriangleNumber(int n);
 int getNumDivisors(long n);
 //takes a positive integer and returns its number of divisors
 
+long long getSumString(std::string n);
+//takes a string of numbers and return the sum of every digit
+
+long long getNumCollatzTerms(long long n);
+//takes a positive integer and returns the number of terms in
+//its Collatz sequence (if odd, multiply by 3 and add 1; if
+//even, divide by 2; repeat until the number 1 is reached and
+//return the amount of terms (including n and 1))
+
 typedef long double (*Problem)();
 const int PROBLEMS_TOTAL = 600;
 
