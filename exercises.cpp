@@ -189,12 +189,12 @@ long double problem8(){
 }
 
 long double problem9(){ //a + b + sqrt(a*a+b*b) = 1000 is the same as b = (1000 * (a - 500)) / (a - 1000) for a < 1000
-    long double b, sumABC, desiredSumABC = 1000 /*changeable*/;
+    long double b, desiredSumABC = 1000 /*changeable*/;
     for (int a = 1; a < .5*desiredSumABC; a++){
         b = (1000 * (a - 500)) / (a - 1000);
         if (isPerfectSquare(a*a+b*b))
             return a*b*(sqrt(a*a+b*b));}
-    return 0;
+    return 0;//error
 }
 
 long double problem10(){
@@ -244,11 +244,35 @@ long double problem17(){
 }
 
 long double problem18(){
-	return notSolved();
+    return notSolved();
 }
 
-long double problem19(){
-	return notSolved();
+//consider a method to find startDateDistFromSunday given that the start date is jan 1st 1901, and jan 1st 1900 was a monday
+//also look at line 260
+long double problem19(){//count how many sundays fall on the first of the month from 1/1/1901 - 12/31/2000
+    //1st of Jan, 1901 was a Monday
+    //months: january31, february28/29, march31, april30, may31, june30, july31, august31, september30, october31, november30, december31
+    //leap year is every year that's divisible by 4 and not 400, and means that february contains 29 days
+    int dd = 1, mm = 1, yy = 1901, lastDD = 31, lastMM = 12, lastYY = 2000, startDateDistFromSunday = 2, foundCounter = 0, iterations = 0;
+    //change dd/mm/yy/startDateDistFromSunday for start date and lastDD/lastMM/lastYY for end date
+    int minNumDaysPerMonth[13] = {-1, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};//indice 0 is -1 to line up indices with month for intuitiveness
+    //note: Feb. sometimes has 29; if 28 is exceeded during Feb., we check to see if there's a 29th day
+    while (yy < 2001){//(yy < lastYY || mm < lastMM || dd <= lastDD){
+        if (dd == 1 && (startDateDistFromSunday + iterations) % 7 == 0){
+            foundCounter++;//if the first day of the month is a Sunday, increase count}
+            cout << dd << "/" << mm << "/" << yy << "\tfound: " << foundCounter << "\tdays from Sunday: " << (startDateDistFromSunday+iterations) % 7 << endl;}
+            if (++dd > minNumDaysPerMonth[mm]){
+            if (dd > 29 || /*check if the month is February and it's a leap year:*/!(mm == 2 && yy % 4 == 0 && (!(yy % 100 == 0) || (yy % 400 == 0)))){
+                dd = 1;
+                if (++mm > 12){
+                    mm = 1;
+                    yy++;
+                }
+            }
+        }
+        iterations++;
+    }
+	return foundCounter;
 }
 
 long double problem20(){
