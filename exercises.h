@@ -24,6 +24,9 @@ long long getNumCollatzTerms(long long n);
 //even, divide by 2; repeat until the number 1 is reached and
 //return the amount of terms (including n and 1))
 
+long long factorial(long long n);
+//takes a nonnegative integer and returns its factorial
+
 typedef long double (*Problem)();
 const int PROBLEMS_TOTAL = 600;
 

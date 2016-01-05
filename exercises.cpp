@@ -2,7 +2,8 @@
 #include <iostream>
 #include <fstream>
 #include <vector> //problems: 2
-#include <string> //problem 8, 13
+#include <string> //problems: 8, 13
+//#include "gmpxx.h" //problems: 20
 #include "math.h"
 #include "stdlib.h" //problems: 8
 #include "exercises.h"
@@ -55,6 +56,13 @@ long long getNumCollatzTerms(long long n){
             n = n*3 + 1;
         numCollatzTerms++;}
     return numCollatzTerms;
+}
+
+long long factorial(long long n){
+    if (n == 0)
+        return 1;
+    else
+        return n*factorial(n-1);
 }
 
 int notSolved(){
@@ -275,7 +283,7 @@ long double problem19(){//count how many sundays fall on the first of the month 
 }
 
 long double problem20(){
-	return notSolved();
+    return notSolved();
 }
 
 long double problem21(){
