@@ -65,6 +65,18 @@ long long factorial(long long n){
         return n*factorial(n-1);
 }
 
+long long getSumProperDivisors(long long n){
+    long long sumProperDivisors = 1;
+    for (int i = 2; i <= .5*n; i++)
+        if (n % i == 0)
+            sumProperDivisors += i;
+    return sumProperDivisors;
+}
+
+bool getAmicability(long long n){
+    return (n == getSumProperDivisors(getSumProperDivisors(n)) && n != getSumProperDivisors(n));
+}
+
 int notSolved(){
     return -1;
 }
@@ -287,7 +299,11 @@ long double problem20(){
 }
 
 long double problem21(){
-	return notSolved();
+	long long sumAmicableNumbers = 0, considerNumbersBelow = 10000;//change this -- considerNumbersBelow's value is not considered
+	for (int i = 1; i < considerNumbersBelow; i++)
+        if (getAmicability(i))
+            sumAmicableNumbers += i;
+    return sumAmicableNumbers;
 }
 
 long double problem22(){

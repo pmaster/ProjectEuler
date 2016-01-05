@@ -27,6 +27,17 @@ long long getNumCollatzTerms(long long n);
 long long factorial(long long n);
 //takes a nonnegative integer and returns its factorial
 
+long long getSumProperDivisors(long long n);
+//takes a nonnegative integer and returns the sum of its proper
+//divisors, the positive numbers which are less than the integer
+//that divide evenly into the integer
+
+bool getAmicability(long long n);
+//takes a positive integer and returns true if amicable, false
+//if not. amicable numbers definition: d(a) = b && d(b) = a &&
+//a != b, for d(n) defined as the sum of proper divisors of n
+//(numbers less than n which divide evenly into n)
+
 typedef long double (*Problem)();
 const int PROBLEMS_TOTAL = 600;
 
