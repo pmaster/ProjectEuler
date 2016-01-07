@@ -38,6 +38,11 @@ bool getAmicability(long long n);
 //a != b, for d(n) defined as the sum of proper divisors of n
 //(numbers less than n which divide evenly into n)
 
+long getAlphabeticalSum(std::string s);
+//takes a string of characters and returns the alphabetical
+//sum of all the alphabetical chars in the string. "alpha"
+//would return a sum of 1+12+16+8+1=38
+
 typedef long double (*Problem)();
 const int PROBLEMS_TOTAL = 600;
 

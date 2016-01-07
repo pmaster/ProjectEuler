@@ -1,7 +1,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <fstream>
-#include <vector> //problems: 2
+#include <vector> //getAlphabeticalSum, problems: 2
 #include <string> //problems: 8, 13
 //#include "gmpxx.h" //problems: 20
 #include "math.h"
@@ -40,7 +40,7 @@ int getNumDivisors(long n){
     return numDivisors;
 }
 
-long long getSumString(string n){
+long long getSumStringOfInts(string n){
     long long sum = 0;
     for (int i = 0; i < n.length(); i++)
         sum += n[i] - 48;
@@ -75,6 +75,14 @@ long long getSumProperDivisors(long long n){
 
 bool getAmicability(long long n){
     return (n == getSumProperDivisors(getSumProperDivisors(n)) && n != getSumProperDivisors(n));
+}
+
+long getAlphabeticalSum(string s){
+    long sum = 0;
+    for (int i = 0; i < s.length(); i++)
+        if (isalpha(s[i]))
+            sum += tolower(s[i]) - 96;
+    return sum;
 }
 
 int notSolved(){
@@ -306,8 +314,43 @@ long double problem21(){
     return sumAmicableNumbers;
 }
 
-long double problem22(){
-	return notSolved();
+long double problem22(){//assumes no duplicate names in initial file name list
+    long nameCounter = 0, sumSortedNames = 0;
+    char next;
+    string name, lowestName, previousName = "'" /*lower than any lowercase name*/, initialNameListFileName = "exercise22/names.txt";
+	ifstream iFile;
+	ofstream oFile;
+	iFile.open(initialNameListFileName.c_str());
+	oFile.open("exercise22/alphaNames.txt");
+	while (iFile >> next){
+        if (next == '"' || next == ',')
+            next = ' ';
+        oFile << static_cast<char>(tolower(next));
+	}
+	iFile.close();
+	oFile.close();
+
+	iFile.open("exercise22/alphaNames.txt");
+	while (iFile >> name)
+        nameCounter++;
+    iFile.close();
+    //oFile.open("exercise22/sortedNames.txt"); sortedNames.txt file is unnecessary
+    for (int i = 0; i < nameCounter; i++){
+        lowestName = "{";//higher than any lowercase name
+        iFile.open("exercise22/alphaNames.txt");
+        for (int j = 0; j < nameCounter; j++){
+            iFile >> name;
+            if (name > previousName && name < lowestName)
+                lowestName = name;
+        }
+        previousName = lowestName;
+        //oFile << lowestName << " "; sortedNames.txt file is unnecessary
+        iFile.close();
+        sumSortedNames += (i+1)*getAlphabeticalSum(lowestName);
+    }
+    //oFile.close(); sortedNames.txt file is unnecessary
+
+	return sumSortedNames;
 }
 
 long double problem23(){
