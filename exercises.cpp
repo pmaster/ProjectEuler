@@ -353,8 +353,25 @@ long double problem22(){//assumes no duplicate names in initial file name list
 	return sumSortedNames;
 }
 
-long double problem23(){
-	return notSolved();
+long double problem23(){//takes over two minutes to run. speed up algorithm
+    long long totalSum = 0;
+    bool notSummableByTwoAbundantNums;
+    vector<int> abundantNumbers;
+    for (int i = 1; i <= 28123 /*greatest possible number that potentially can't be summed by two abundant numbers*/
+        - 12 /*smallest abundant number*/; i++){
+        if (getSumProperDivisors(i) > i)
+            abundantNumbers.push_back(i);
+        notSummableByTwoAbundantNums = true;
+        for (int j = 0; j < abundantNumbers.size() && notSummableByTwoAbundantNums; j++)
+            for (int k = 0; k < abundantNumbers.size(); k++)
+                if (abundantNumbers[j] + abundantNumbers[k] == i){
+                    notSummableByTwoAbundantNums = false;
+                    break;
+                }
+        if (notSummableByTwoAbundantNums)
+            totalSum += i;
+    }
+    return totalSum;
 }
 
 long double problem24(){
