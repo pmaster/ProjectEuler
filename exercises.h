@@ -24,7 +24,7 @@ long long getNumCollatzTerms(long long n);
 //even, divide by 2; repeat until the number 1 is reached and
 //return the amount of terms (including n and 1))
 
-long long factorial(long long n);
+long long factorial(int n);
 //takes a nonnegative integer and returns its factorial
 
 long long getSumProperDivisors(long long n);

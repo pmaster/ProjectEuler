@@ -58,7 +58,7 @@ long long getNumCollatzTerms(long long n){
     return numCollatzTerms;
 }
 
-long long factorial(long long n){
+long long factorial(int n){
     if (n == 0)
         return 1;
     else
@@ -374,11 +374,21 @@ long double problem23(){//takes over two minutes to run. speed up algorithm
     return totalSum;
 }
 
-long double problem24(){
+long double problem24(){//unsure of how to generate permutations. 10 nested for loops?
+    struct tenCharArrayHolder{
+        char tenCharArray[10];
+    };
+    tenCharArrayHolder tenCharArray = {"0123456789"}
+    vector<string> permutations;
+    permutations.reserve(factorial(10));
+
+
+
 	return notSolved();
 }
 
 long double problem25(){
+    //big int would greatly help
 	return notSolved();
 }
 
