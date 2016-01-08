@@ -378,7 +378,7 @@ long double problem24(){//unsure of how to generate permutations. 10 nested for 
     struct tenCharArrayHolder{
         char tenCharArray[10];
     };
-    tenCharArrayHolder tenCharArray = {"0123456789"}
+    tenCharArrayHolder tenCharArray = {"123456789"};
     vector<string> permutations;
     permutations.reserve(factorial(10));
 
@@ -393,6 +393,7 @@ long double problem25(){
 }
 
 long double problem26(){
+    cout << static_cast<long double>(1)/7*1000000000 << endl;
 	return notSolved();
 }
 
