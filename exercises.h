@@ -5,8 +5,8 @@ bool isPerfectSquare(int n);
 //takes a positive integer as an argument and returns true
 //if the integer is a perfect square and false if not
 bool isPrime(int n);
-//takes an integer that is greater than 1 and returns true
-//if the integer is a prime number and false if not
+//takes an integer and returns false if the number is less
+//than 2 or not a prime number, true if else
 
 long getTriangleNumber(int n);
 //takes a positive integer, n, and returns the
@@ -42,6 +42,10 @@ long getAlphabeticalSum(std::string s);
 //takes a string of characters and returns the alphabetical
 //sum of all the alphabetical chars in the string. "alpha"
 //would return a sum of 1+12+16+8+1=38
+
+long double quadraticFormulaTermGenerator(long double a, long double b, long double c, long double n);
+//outputs the simplified expression of the form
+//an^2 + bn + c
 
 typedef long double (*Problem)();
 const int PROBLEMS_TOTAL = 600;

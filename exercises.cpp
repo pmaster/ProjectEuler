@@ -17,6 +17,8 @@ bool isPerfectSquare(int n){
 }
 
 bool isPrime(int n){
+    if (n < 2)
+        return false;
     for (int i = 2; i <= sqrt(n); i++)
         if (n % i == 0)
             return false;
@@ -83,6 +85,12 @@ long getAlphabeticalSum(string s){
         if (isalpha(s[i]))
             sum += tolower(s[i]) - 96;
     return sum;
+}
+
+//consider expanding this function to take another argument that denotes whether a linear, quadratic,
+//cubic, quartic, quintic, etc. function is desired
+long double quadraticFormulaTermGenerator(long double a, long double b, long double c, long double n){
+    return a*n*n+b*n+c;
 }
 
 int notSolved(){
@@ -397,8 +405,25 @@ long double problem26(){
 	return notSolved();
 }
 
-long double problem27(){
-	return notSolved();
+long double problem27(){//if the max prime chain length occurs for multiple values of a & b,
+    //the lower (lower, not lower magnitude) instance is considered
+    long maxAbsValue = 999/*change this*/, productAB_atMPCL, maxPrimeChainLength = 0;
+    bool chainUnbroken;
+    for (int a = -maxAbsValue; a <= maxAbsValue; a++)
+        for (int b = -maxAbsValue; b <= maxAbsValue; b++){
+            chainUnbroken = true;
+            for (int n = 0; chainUnbroken; n++)
+                if (!isPrime(quadraticFormulaTermGenerator(1, a, b, n))){
+                    chainUnbroken = false;
+                    if (n > maxPrimeChainLength){
+                        maxPrimeChainLength = n;
+                        productAB_atMPCL = a*b;
+                        //cout << "n^2 + " << a << "n + " << b << "\t\t" << maxPrimeChainLength << "\t" << productAB_atMPCL << endl; THIS STATEMENT FOR TESTING
+                    }
+                }
+        }
+
+	return productAB_atMPCL;
 }
 
 long double problem28(){
