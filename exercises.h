@@ -47,6 +47,12 @@ long double quadraticFormulaTermGenerator(long double a, long double b, long dou
 //outputs the simplified expression of the form
 //an^2 + bn + c
 
+void getDiagonalSums(std::vector<std::vector<int> > squareMatrix, int matrixLength, int &majorDiagonalSum, int &minorDiagonalSum);
+//takes a square 2-dimensional vector of ints, its length, and the
+//addresses of two variables containing ints and sets those two
+//variables to respectively contain the sums of the major and
+//minor diagonals of the matrix
+
 typedef long double (*Problem)();
 const int PROBLEMS_TOTAL = 600;
 

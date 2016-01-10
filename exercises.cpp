@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include <iostream>
+#include <iomanip> //(most likely) only for testing: setw(width) on matrix problem, etc.
 #include <fstream>
 #include <vector> //getAlphabeticalSum, problems: 2
 #include <string> //problems: 8, 13
@@ -91,6 +92,15 @@ long getAlphabeticalSum(string s){
 //cubic, quartic, quintic, etc. function is desired
 long double quadraticFormulaTermGenerator(long double a, long double b, long double c, long double n){
     return a*n*n+b*n+c;
+}
+
+void getDiagonalSums(vector<vector<int> > squareMatrix, int matrixLength, int &majorDiagonalSum, int &minorDiagonalSum){
+    majorDiagonalSum = 0;
+    minorDiagonalSum = 0;
+    for (int i = 0; i < matrixLength; i++){
+        majorDiagonalSum += squareMatrix[i][i];
+        minorDiagonalSum += squareMatrix[i][matrixLength - 1 - i];}
+    return;
 }
 
 int notSolved(){
@@ -427,7 +437,35 @@ long double problem27(){//if the max prime chain length occurs for multiple valu
 }
 
 long double problem28(){
-	return notSolved();
+    int majorDiagonalSum = 0, minorDiagonalSum = 0, startingElementValue = 1, spiralVectorLength = 1001; //change startingElementValue and this -- be wary of changing to an even number though
+    int element = startingElementValue, x = spiralVectorLength/2, y = spiralVectorLength/2;//x and y are horizontal and vertical difference from the upper left element on the matrix
+    vector<vector<int> > spiralMatrix(spiralVectorLength, vector<int>(spiralVectorLength)); //spiralMatrix[500][500] is equal to 1
+    //first, seed the matrix
+    spiralMatrix[x][y] = element++;
+    for (int layer = 1; layer <= spiralVectorLength/2 /*after finished, reconsider this to work out proper behavior for even values of spiralVectorLength*/; layer++){
+        spiralMatrix[y][++x] = element++;
+        for (int i = 0; i < 2*layer - 1; i++)
+            spiralMatrix[++y][x] = element++;
+        for (int i = 0; i < 2*layer; i++)
+            spiralMatrix[y][--x] = element++;
+        for (int i = 0; i < 2*layer; i++)
+            spiralMatrix[--y][x] = element++;
+        for (int i = 0; i < 2*layer; i++)
+            spiralMatrix[y][++x] = element++;
+    }
+
+    //print the matrix to test seeding algorithm
+    /*for (int i = 0; i < spiralVectorLength; i++){
+        for (int j = 0; j < spiralVectorLength; j++)
+            cout << setw(3) << spiralMatrix[i][j] << " ";
+        cout << endl;}
+    */
+
+    //get majorDiagonalSum and minorDiagonalSum, then return the sum minus the center element value, because the
+    //major and minor diagonal sum variables will both contain the matrix's center element (we don't want that)
+	getDiagonalSums(spiralMatrix, spiralVectorLength, majorDiagonalSum, minorDiagonalSum);
+
+	return majorDiagonalSum + minorDiagonalSum - startingElementValue;
 }
 
 long double problem29(){
