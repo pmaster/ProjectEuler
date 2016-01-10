@@ -305,7 +305,7 @@ long double problem19(){//count how many sundays fall on the first of the month 
     while (yy < lastYY || (yy == lastYY && ((mm == lastMM && dd <= lastDD) || mm < lastMM))){//(yy < lastYY || mm < lastMM || dd <= lastDD){
         if (dd == 1 && (startDateDistFromSunday + iterations) % 7 == 0){
             foundCounter++;//if the first day of the month is a Sunday, increase count}
-            cout << dd << "/" << mm << "/" << yy << "\tfound: " << foundCounter << "\tdays from Sunday: " << (startDateDistFromSunday+iterations) % 7 << endl;}
+            //FOR TESTING: cout << dd << "/" << mm << "/" << yy << "\tfound: " << foundCounter << "\tdays from Sunday: " << (startDateDistFromSunday+iterations) % 7 << endl;}
             if (++dd > minNumDaysPerMonth[mm]){
             if (dd > 29 || /*check if the month is February and it's a leap year:*/!(mm == 2 && yy % 4 == 0 && (!(yy % 100 == 0) || (yy % 400 == 0)))){
                 dd = 1;
