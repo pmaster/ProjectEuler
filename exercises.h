@@ -53,6 +53,11 @@ void getDiagonalSums(std::vector<std::vector<int> > squareMatrix, int matrixLeng
 //variables to respectively contain the sums of the major and
 //minor diagonals of the matrix
 
+bool equalsSumOfNthPowerOfDigits(long long n, int power);
+//takes two positive integers and calculates the sum of the power
+//represented by the second number of the number's digits and returns
+//true if the first number and the sum are equal, false if else
+
 typedef long double (*Problem)();
 const int PROBLEMS_TOTAL = 600;
 

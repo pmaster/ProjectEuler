@@ -103,6 +103,25 @@ void getDiagonalSums(vector<vector<int> > squareMatrix, int matrixLength, int &m
     return;
 }
 
+bool equalsSumOfNthPowerOfDigits(long long n, int power){
+    long long sumOfDigitPowers = 0, number = n;
+    vector<int> digits;
+
+    while (n != 0){
+        digits.push_back(n % 10);
+        n = n/10;}
+
+    for (int i = 0; i < digits.size(); i++)
+        sumOfDigitPowers += pow(digits[i], power);
+
+    if (number == sumOfDigitPowers)
+        return true;
+
+    return false;
+}
+
+//the following function that returns a vector<int> or array of ints would be nice: vector<int> getVectorOfDigits(long long n)
+
 int notSolved(){
     return -1;
 }
@@ -307,11 +326,12 @@ long double problem19(){//count how many sundays fall on the first of the month 
             foundCounter++;//if the first day of the month is a Sunday, increase count}
             //FOR TESTING: cout << dd << "/" << mm << "/" << yy << "\tfound: " << foundCounter << "\tdays from Sunday: " << (startDateDistFromSunday+iterations) % 7 << endl;}
             if (++dd > minNumDaysPerMonth[mm]){
-            if (dd > 29 || /*check if the month is February and it's a leap year:*/!(mm == 2 && yy % 4 == 0 && (!(yy % 100 == 0) || (yy % 400 == 0)))){
-                dd = 1;
-                if (++mm > 12){
-                    mm = 1;
-                    yy++;
+                if (dd > 29 || /*check if the month is February and it's a leap year:*/!(mm == 2 && yy % 4 == 0 && (!(yy % 100 == 0) || (yy % 400 == 0)))){
+                    dd = 1;
+                    if (++mm > 12){
+                        mm = 1;
+                        yy++;
+                    }
                 }
             }
         }
@@ -473,7 +493,15 @@ long double problem29(){
 }
 
 long double problem30(){
-	return notSolved();
+    //note: n-digit positive integers can only be written as the sum
+    //of the <=n+1th-power of their digits;
+    int power = 5; //change this -- we're testing numbers for if they
+    //can be written as the sum of the power-th power of their digits
+    long totalSum = 0;
+    for (int i = 10; i < 4*pow(10, power); i++)
+        if (equalsSumOfNthPowerOfDigits(i, power))
+            totalSum += i;
+	return totalSum;
 }
 
 long double problem31(){
