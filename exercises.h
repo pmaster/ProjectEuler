@@ -4,7 +4,7 @@
 bool isPerfectSquare(int n);
 //takes a positive integer as an argument and returns true
 //if the integer is a perfect square and false if not
-bool isPrime(int n);
+bool isPrime(long long n);
 //takes an integer and returns false if the number is less
 //than 2 or not a prime number, true if else
 

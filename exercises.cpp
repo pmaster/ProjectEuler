@@ -17,7 +17,7 @@ bool isPerfectSquare(int n){
     return false;
 }
 
-bool isPrime(int n){
+bool isPrime(long long n){
     if (n < 2)
         return false;
     for (int i = 2; i <= sqrt(n); i++)
@@ -153,23 +153,13 @@ long double problem2(){ //longs versus ints? ints appear to work fine. vector si
     return totalSum;
 }
 
-bool problem3_primeNumTester(long long numToBeTested); //MOVE TO HEADER?
-
 long double problem3(){
     long long largestPrimeFactor, promptNumber = 600851475143;
-
     for (long long i = 2; i < ceil(sqrt(promptNumber)); i++)
         if (promptNumber % i == 0)
-            if (problem3_primeNumTester(i))
+            if (isPrime(i))
                 largestPrimeFactor = i;
     return largestPrimeFactor;
-}
-
-bool problem3_primeNumTester(long long numToBeTested){
-    for (long long i = 2; i < ceil(sqrt(numToBeTested)); i++)
-        if (numToBeTested % i == 0)
-            return false;
-    return true;
 }
 
 long double problem4(){ //given that 234432 = 444*528
