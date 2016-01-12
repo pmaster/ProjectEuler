@@ -120,6 +120,23 @@ bool equalsSumOfNthPowerOfDigits(long long n, int power){
     return false;
 }
 
+bool isMultiplicativelyPandigital(int i){
+
+}
+
+bool containsAllDigitsUniquely(string stringOfDigits){
+    int containsThisUniquely;
+    bool containsAllUniquely = true;
+    for (char i = 48; i <= 57 && containsAllUniquely; i++){
+        containsThisUniquely = -1;
+        for (int j = 0; j < stringOfDigits.size(); j++)
+            if (stringOfDigits[j] == i)
+                containsThisUniquely++;
+        containsAllUniquely = containsAllUniquely && !containsThisUniquely;
+    }
+
+    return containsAllUniquely;
+}
 //the following function that returns a vector<int> or array of ints would be nice: vector<int> getVectorOfDigits(long long n)
 
 int notSolved(){
@@ -499,7 +516,15 @@ long double problem31(){
 }
 
 long double problem32(){
-	return notSolved();
+    long totalSum = 0;
+
+    //only need to test above the lowest 5-digit number with unique digits up to the highest 5-digit
+    //number with unique digits because no six digit number can be made by multiplying a total of 10-6=4 digits
+    for (int i = 12345; i <= 98765; i++)
+        if (isMultiplicativelyPandigital(i))
+            totalSum += i;
+
+	return totalSum;
 }
 
 long double problem33(){
