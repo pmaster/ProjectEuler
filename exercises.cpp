@@ -515,7 +515,9 @@ long double problem31(){
 	return notSolved();
 }
 
-long double problem32(){
+long double problem32(){//MISUNDERSTOOD PROBLEM 32;
+    //approach needs to be faster algorithmically and take new knowledge about
+    //zeroes being present in numbers
     long totalSum = 0;
 
     //only need to test above the lowest 5-digit number with unique digits up to the highest 5-digit

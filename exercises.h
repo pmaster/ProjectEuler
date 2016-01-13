@@ -58,10 +58,14 @@ bool equalsSumOfNthPowerOfDigits(long long n, int power);
 //represented by the second number of the number's digits and returns
 //true if the first number and the sum are equal, false if else
 
-bool isMultiplicativelyPandigital(int i);
+bool isMultiplicativelyPandigital(int n);
+//takes a positive integer and returns true if there exist two integers,
+//which, when multiplied together, produce the integer and include every
+//nonzero digit, 1-9, uniquely between the multiplicand, multiplier, and
+//product. returns false if else
 
 bool containsAllDigitsUniquely(std::string stringOfDigits);
-//if the string contains all digits 0-9 uniquely, then returns true
+//if the string contains all nonzero digits 1-9 uniquely, then returns true
 //if else, returns false. non-numeric characters are ignored
 
 typedef long double (*Problem)();
